@@ -1,0 +1,15 @@
+{
+  "name": "transcendence-backend",
+  "version": "1.0.0",
+  "description": "Backend Fastify for transcendence",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fastify": "^4.25.2",
+    "@fastify/static": "^6.10.2",
+    "@fastify/websocket": "^6.0.1"
+  }
+}

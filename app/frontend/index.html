@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>Transcendance</title>
+		<link rel="stylesheet" href="./dist/output.css">
+		<!-- <link rel="stylesheet" href="./style.css"> -->
+	</head>
+
+<style>
+	.neon-glitch {
+		font-family: "Orbitron", Arial, Helvetica, sans-serif;
+		color: #00ffff;
+	}
+
+	.neon-glitch {
+		text-shadow:
+			0 0 10px #a006ff,
+			0 0 20px #a200ff,
+			0 0 40px #590f8d,
+			0 0 80px #a200ff;
+		filter: blur(0.5px);
+	}
+
+	.neon-glitch::before,
+	.neon-glitch::after {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		mix-blend-mode: screen;
+		animation: glitch 1.5s infinite;
+		pointer-events: none;
+	}
+
+	.neon-glitch::before::before {
+		color: #ff0066;
+		animation-duration: 1.2s;
+	}
+
+	.neon-glitch::after::after {
+		color: #00aaff;
+		animation-duration: 1.7s;
+	}
+
+	@keyframes glitch {
+		0% { transform: translate(0); opacity: 1; }
+		20% { transform: translate(-2px, 2px); }
+		40% { transform: translate(2px, -2px); opacity: 0.7; }
+		60% { transform: translate(-3px, 1px); }
+		80% { transform: translate(3px, -1px); opacity: 0.8; }
+		100% { transform: translate(0); opacity: 1; }
+	}
+
+	.neon-border {
+	border: 5px solid #00ffff;
+	box-shadow:
+		0 0 5px #ae00ff,
+		0 0 10px #c300ff,
+		0 0 20px #b700ff,
+		0 0 40px #c300ff;
+	transition: 0.2s ease;
+	}
+
+	.neon-border:focus,
+	.neon-border:hover {
+		box-shadow:
+			0 0 10px #a006ff,
+			0 0 20px #003cff,
+			0 0 30px #0f378d,
+			0 0 60px #0011ff;
+		outline: none;
+	}
+
+</style>
+
+
+<body>
+	<!-- BACKGROUND PAGE D'ACCUEIL -->
+	<img src="images/enter.jpg"
+			class="absolute bg-cover w-screen h-screen -z-10">
+
+	<!-- <img src="images/triple.png"
+			class="absolute top-0/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] object-fill z-0"> -->
+
+	<!-- AFFICHAGE DU TITRE PRINCIPAL DU SITE -->
+	<h1 class="neon-glitch absolute top-[5%] left-1/2 -translate-x-1/2 text-7xl z-20"
+			data-text="𝕋ℝ𝔸ℕ𝕊ℂ𝔼ℕ𝔻𝔸ℕℂ𝔼">𝕋ℝ𝔸ℕ𝕊ℂ𝔼ℕ𝔻𝔸ℕℂ𝔼
+	</h1>
+
+	<!-- GESTION DU BOUTON DE CONNEXION, CHANGEMENT DU CURSEUR, ETC...-->
+	<h1 id="open-login"
+				class="neon-glitch absolute top-[30%] left-1/2 -translate-x-1/2 text-4xl z-20 cursor-pointer"
+				data-text="ℂ𝕆ℕℕ𝔼ℂ𝕋𝕀𝕆ℕ⮩">
+			ℂ𝕆ℕℕ𝔼ℂ𝕋𝕀𝕆ℕ⮩
+	</h1>
+
+
+	<div id="login-form"
+			class="hidden absolute top-[40%] left-1/2 -translate-x-1/2 bg-black/60 p-6 rounded-xl backdrop-blur-xl shadow-2xl z-30 w-[300px] neon-border">
+		<!-- EMPILE LES ELEMENTS VERTICAUX + ESPACE DE 4 ENTRE LES CHAMPS -->
+		<form class="flex flex-col gap-4 text-white">
+			<!-- "placeholder" = TEXTE D'EXEMPLE -->
+			<input type="text"
+						placeholder="LOGIN"
+						class="px-3 py-2 rounded bg-gray-900/80 neon-border">
+			<!-- TYPE PASSWORD DONC MASQUE LE CONTENU -->
+			<input type="password"
+						placeholder="PASSWORD"
+						class="px-3 py-2 rounded bg-gray-900/80 neon-border">
+			<!-- TYPE "submit" ENVOIE LE FORMULAIRE -->
+			<button type="submit"
+							class="neon-glitch px-4 py-2 bg-gray-900/80 text-cyan-300 rounded font-semibold neon-border">
+				👾​ GO 👾​
+			</button>
+		</form>
+	</div>
+
+	<!-- SCRIPT POUR AFFICHER / CACHER LE FORMULAIRE -->
+	<script>
+		document.getElementById("open-login").onclick = () =>
+		{
+		const form = document.getElementById("login-form");
+		form.classList.toggle("hidden");
+		};
+	</script>
+
+	<script>
+		// Gestion du bouton GO (soumission du formulaire)
+		document.querySelector("#login-form form").onsubmit = (e) => {
+			e.preventDefault(); // Empêche le rechargement par défaut
+			// Redirection vers la page suivante
+			window.location.href = "page2.html"; // Remplace par ta page
+		};
+	</script>
+
+
+
+
+</body>
+</html>
+
+
+<!-- script pour comparer des donnees rentres avec ceux attendus
+
+<script>
+document.querySelector("form").onsubmit = (e) => {
+    e.preventDefault(); // empêche le rechargement de la page
+
+    const login = document.querySelector('input[type="text"]').value;
+    const password = document.querySelector('input[type="password"]').value;
+
+    const loginAttendu = "admin";
+    const passwordAttendu = "1234";
+
+    if (login === loginAttendu && password === passwordAttendu) {
+        console.log("Connexion réussie");
+    } else {
+        console.log("Identifiants incorrects");
+    }
+};
+</script>
+
+POUR STOCKER LES INFOS : 
+localStorage.setItem("login", "admin");
+CREE UNE CLE "LOGIN" QUI CONTIENT "ADMIN"
+
+LIRE LA VALEUR : 
+const login = localStorage.getItem("login");
+console.log(login); // affiche "admin"
+
+EXEMPLE DE SI JE L'AVAIS STOCKER DANS LOCAL STORAGE : 
+<script>
+// Exemple : on stocke un login connu
+localStorage.setItem("login", "utilisateurTest");
+
+document.querySelector("form").onsubmit = (e) => {
+    e.preventDefault();
+
+    const loginEntre = document.querySelector('input[type="text"]').value;
+    const loginStocke = localStorage.getItem("login");
+
+    if (loginEntre === loginStocke) {
+        console.log("Login correct");
+    } else {
+        console.log("Login incorrect");
+    }
+};
+</script>
+
+JE RECUPERE LES VALEURS DU FORMULAIRE :
+
+const login = document.querySelector('#login').value;
+const password = document.querySelector('#password').value;
+
+J'ENVOIE LES DONNES AU SERVEUR : 
+
+fetch("https://ton-serveur.com/login", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        login: login,
+        password: password
+    })
+})
+.then(res => res.json())
+.then(data => {
+    // Réponse du serveur
+});
+
+JE RECOIS LA REPONSE : 
+{
+  "success": true,
+  "message": "Connexion réussie",
+  "token": "eyJhbGciOi..." 
+}
+OU
+{
+  "success": false,
+  "message": "Identifiants incorrects"
+}
+ET JE DOIS REAGIR EN CONSEQUENCE, METTRE FALSE OU
+REDIRIGER L'UTILISATEUR OU STOCKER LE TOKEN SI SUCCESS
+
+-->

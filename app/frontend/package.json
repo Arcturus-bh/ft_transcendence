@@ -1,0 +1,14 @@
+{
+  "name": "transcendance-frontend",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.4",
+    "postcss": "^8.4.38",
+    "autoprefixer": "^10.4.14"
+  }
+}
