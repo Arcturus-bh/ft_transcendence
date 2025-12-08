@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
-	
-	<head>
-		<meta charset="UTF-8">
-		<title>Transcendance</title>
-		<link rel="stylesheet" href="./dist/output.css">
-		<!-- <link rel="stylesheet" href="./style.css"> -->
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>Transcendence</title>
+	<link rel="stylesheet" href="./dist/output.css">
+</head>
 
 <style>
 	.neon-glitch {
 		font-family: "Orbitron", Arial, Helvetica, sans-serif;
 		color: #00ffff;
 	}
-
 	.neon-glitch {
-		text-shadow:
-			0 0 10px #a006ff,
-			0 0 20px #a200ff,
-			0 0 40px #590f8d,
-			0 0 80px #a200ff;
+		text-shadow: 0 0 10px #a006ff, 0 0 20px #a200ff, 0 0 40px #590f8d, 0 0 80px #a200ff;
 		filter: blur(0.5px);
 	}
-
 	.neon-glitch::before,
 	.neon-glitch::after {
 		content: attr(data-text);
@@ -34,17 +26,6 @@
 		animation: glitch 1.5s infinite;
 		pointer-events: none;
 	}
-
-	.neon-glitch::before::before {
-		color: #ff0066;
-		animation-duration: 1.2s;
-	}
-
-	.neon-glitch::after::after {
-		color: #00aaff;
-		animation-duration: 1.7s;
-	}
-
 	@keyframes glitch {
 		0% { transform: translate(0); opacity: 1; }
 		20% { transform: translate(-2px, 2px); }
@@ -55,89 +36,198 @@
 	}
 
 	.neon-border {
-	border: 5px solid #00ffff;
-	box-shadow:
-		0 0 5px #ae00ff,
-		0 0 10px #c300ff,
-		0 0 20px #b700ff,
-		0 0 40px #c300ff;
-	transition: 0.2s ease;
+		border: 5px solid #00ffff;
+		box-shadow: 0 0 5px #ae00ff, 0 0 10px #c300ff, 0 0 20px #b700ff, 0 0 40px #c300ff;
+		transition: 0.2s ease;
 	}
-
-	.neon-border:focus,
-	.neon-border:hover {
-		box-shadow:
-			0 0 10px #a006ff,
-			0 0 20px #003cff,
-			0 0 30px #0f378d,
-			0 0 60px #0011ff;
+	.neon-border:hover,
+	.neon-border:focus {
+		box-shadow: 0 0 10px #a006ff, 0 0 20px #003cff, 0 0 30px #0f378d, 0 0 60px #0011ff;
 		outline: none;
 	}
-
 </style>
 
-
 <body>
-	<!-- BACKGROUND PAGE D'ACCUEIL -->
-	<img src="images/enter.jpg"
-			class="absolute bg-cover w-screen h-screen -z-10">
+<div id="app">
 
-	<!-- <img src="images/triple.png"
-			class="absolute top-0/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] object-fill z-0"> -->
+	<!-- PAGE HOME ---------------------------------------------------------->
+	<div id="page-home" class="spa-page">
+		<img src="images/enter.jpg" class="absolute bg-cover w-screen h-screen -z-10">
 
-	<!-- AFFICHAGE DU TITRE PRINCIPAL DU SITE -->
-	<h1 class="neon-glitch absolute top-[5%] left-1/2 -translate-x-1/2 text-7xl z-20"
-			data-text="𝕋ℝ𝔸ℕ𝕊ℂ𝔼ℕ𝔻𝔸ℕℂ𝔼">𝕋ℝ𝔸ℕ𝕊ℂ𝔼ℕ𝔻𝔸ℕℂ𝔼
-	</h1>
+		<h1 class="neon-glitch absolute top-[5%] left-1/2 -translate-x-1/2 text-7xl z-20"
+			data-text="𝕋ℝ𝔸ℕ𝕊ℂ𝔼ℕ𝔻𝔼ℕℂ𝔼">𝕋ℝ𝔸ℕ𝕊ℂ𝔼ℕ𝔻𝔼ℕℂ𝔼</h1>
 
-	<!-- GESTION DU BOUTON DE CONNEXION, CHANGEMENT DU CURSEUR, ETC...-->
-	<h1 id="open-login"
-				class="neon-glitch absolute top-[30%] left-1/2 -translate-x-1/2 text-4xl z-20 cursor-pointer"
-				data-text="ℂ𝕆ℕℕ𝔼ℂ𝕋𝕀𝕆ℕ⮩">
-			ℂ𝕆ℕℕ𝔼ℂ𝕋𝕀𝕆ℕ⮩
-	</h1>
+		<h1 id="open-login"
+			class="neon-glitch absolute top-[30%] left-1/2 -translate-x-1/2 text-4xl z-20 cursor-pointer"
+			data-text="ℂ𝕆ℕℕ𝔼ℂ𝕋𝕀𝕆ℕ⮩">ℂ𝕆ℕℕ𝔼ℂ𝕋𝕀𝕆ℕ⮩</h1>
 
-
-	<div id="login-form"
+		<div id="login-form"
 			class="hidden absolute top-[40%] left-1/2 -translate-x-1/2 bg-black/60 p-6 rounded-xl backdrop-blur-xl shadow-2xl z-30 w-[300px] neon-border">
-		<!-- EMPILE LES ELEMENTS VERTICAUX + ESPACE DE 4 ENTRE LES CHAMPS -->
-		<form class="flex flex-col gap-4 text-white">
-			<!-- "placeholder" = TEXTE D'EXEMPLE -->
-			<input type="text"
-						placeholder="LOGIN"
-						class="px-3 py-2 rounded bg-gray-900/80 neon-border">
-			<!-- TYPE PASSWORD DONC MASQUE LE CONTENU -->
-			<input type="password"
-						placeholder="PASSWORD"
-						class="px-3 py-2 rounded bg-gray-900/80 neon-border">
-			<!-- TYPE "submit" ENVOIE LE FORMULAIRE -->
-			<button type="submit"
-							class="neon-glitch px-4 py-2 bg-gray-900/80 text-cyan-300 rounded font-semibold neon-border">
-				👾​ GO 👾​
-			</button>
-		</form>
+
+			<form id="login-form-form" class="flex flex-col gap-4 text-white">
+				<input type="text" placeholder="LOGIN" class="px-3 py-2 rounded bg-gray-900/80 neon-border">
+				<input type="password" placeholder="PASSWORD" class="px-3 py-2 rounded bg-gray-900/80 neon-border">
+				<button type="submit" class="neon-glitch px-4 py-2 bg-gray-900/80 text-cyan-300 rounded font-semibold neon-border">
+					👾 GO 👾
+				</button>
+			</form>
+
+		</div>
+
 	</div>
 
-	<!-- SCRIPT POUR AFFICHER / CACHER LE FORMULAIRE -->
-	<script>
-		document.getElementById("open-login").onclick = () =>
-		{
-		const form = document.getElementById("login-form");
-		form.classList.toggle("hidden");
-		};
-	</script>
+	<div id="page-dashboard" class="spa-page hidden">
+		<img src="images/enter.jpg" class="absolute bg-cover w-screen h-screen -z-10">
+		<h1 class="neon-glitch absolute top-[5%] left-1/2 -translate-x-1/2 text-7xl z-20"
+			data-text="𝕋ℝ𝔸ℕ𝕊ℂ𝔼ℕ𝔻𝔼ℕℂ𝔼">𝕋ℝ𝔸ℕ𝕊ℂ𝔼ℕ𝔻𝔼ℕℂ𝔼</h1>
 
-	<script>
-		// Gestion du bouton GO (soumission du formulaire)
-		document.querySelector("#login-form form").onsubmit = (e) => {
-			e.preventDefault(); // Empêche le rechargement par défaut
-			// Redirection vers la page suivante
-			window.location.href = "page2.html"; // Remplace par ta page
-		};
-	</script>
+		<!-- PLAY -->
+		<h1 id="open-play"
+			class="neon-glitch absolute top-[30%] left-1/2 -translate-x-1/2 text-5xl z-20 cursor-pointer"
+			data-text="ℙ𝕃𝔸𝕐">ℙ𝕃𝔸𝕐</h1>
+		<div id="play-menu"
+			class="hidden absolute top-[40%] left-1/2 -translate-x-1/2 bg-black/60 p-6 rounded-xl backdrop-blur-xl shadow-2xl z-30 w-[300px] neon-border">
+			<h2 id="open-pong"
+				class="neon-glitch text-3xl mb-4 cursor-pointer"
+				data-text="ℙ𝕆ℕ𝔾">ℙ𝕆ℕ𝔾</h2>
+			<h2 id="open-tank"
+				class="neon-glitch text-3xl cursor-pointer"
+				data-text="𝕋𝔸ℕ𝕂">𝕋𝔸ℕ𝕂</h2>
+		</div>
+
+		<!-- OPTIONS -->
+		<h1 id="open-options"
+			class="neon-glitch absolute top-[45%] left-1/2 -translate-x-1/2 text-5xl z-20 cursor-pointer"
+			data-text="𝕆ℙ𝕋𝕀𝕆ℕ𝕊">𝕆ℙ𝕋𝕀𝕆ℕ𝕊</h1>
+		<div id="options-menu"
+			class="hidden absolute top-[0.5%] left-[92%] -translate-x-[92%] bg-black/60 p-6 rounded-xl backdrop-blur-xl shadow-2xl z-30 w-[400px] h-screen neon-border flex-col">
+		</div>
+
+		<!-- PROFILE -->
+		<h1 id="open-profile"
+			class="neon-glitch absolute top-[60%] left-1/2 -translate-x-1/2 text-5xl z-20 cursor-pointer"
+			data-text="ℙℝ𝕆𝔽𝕀𝕃𝔼">ℙℝ𝕆𝔽𝕀𝕃𝔼</h1>
+		<div id="profile-menu"
+			class="hidden absolute top-[0.5%] left-[92%] -translate-x-[92%] bg-black/60 p-6 rounded-xl backdrop-blur-xl shadow-2xl z-30 w-[400px] h-screen neon-border flex-col">
+		</div>
+
+		<!-- CHAT -->
+		<h1 id="open-chat"
+			class="neon-glitch absolute top-[1%] left-[98%] -translate-x-[98%] text-4xl z-20 cursor-pointer"
+			data-text="|||">|||</h1>
+		<div id="chat-form"
+			class="hidden absolute top-[0.5%] left-[92%] -translate-x-[92%] bg-black/60 p-6 rounded-xl backdrop-blur-xl shadow-2xl z-30 w-[400px] h-screen neon-border flex-col">
+		</div>
+	</div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+
+	/* OUVERTURE LOGIN */
+	document.getElementById("open-login").onclick = () => {
+		document.getElementById("login-form").classList.toggle("hidden");
+	};
+
+	/* OUVERTURE CHAT */
+	document.getElementById("open-chat").onclick = () => {
+		document.getElementById("chat-form").classList.toggle("hidden");
+	};
+
+	// OUVERTURE PLAY MENU
+	document.getElementById("open-play").onclick = () => {
+		document.getElementById("play-menu").classList.toggle("hidden");
+	};
+
+	// OUVERTURE OPTIONS MENU
+	document.getElementById("open-options").onclick = () => {
+		document.getElementById("options-menu").classList.toggle("hidden");
+	};
+
+	// OUVERTURE PROFILE MENU
+	document.getElementById("open-profile").onclick = () => {
+		document.getElementById("profile-menu").classList.toggle("hidden");
+	};
+
+	// NAVIGATION VERS LES JEUX
+	document.getElementById("open-pong").onclick = () => navigate("#/pong");
+	document.getElementById("open-tank").onclick = () => navigate("#/tank");
 
 
+	/* SPA NAVIGATION */
+	function navigate(path) {
+		history.pushState({ page: path }, "", path);
+		render(path);
+	}
 
+	function render(path) {
+
+		document.querySelectorAll(".spa-page").forEach(p => p.classList.add("hidden"));
+
+		switch (path) {
+			case "#/dashboard":
+				document.getElementById("page-dashboard").classList.remove("hidden");
+				break;
+
+			case "#/games":
+				document.getElementById("page-games").classList.remove("hidden");
+				break;
+
+			case "#/pong":
+				document.getElementById("page-games").classList.remove("hidden");
+				document.getElementById("game-title").textContent = "PONG";
+				document.getElementById("game-content").textContent = "Zone du jeu Pong ici.";
+				break;
+
+			case "#/tank":
+				document.getElementById("page-games").classList.remove("hidden");
+				document.getElementById("game-title").textContent = "TANK";
+				document.getElementById("game-content").textContent = "Zone du jeu Tank ici.";
+				break;
+
+			default:
+				document.getElementById("page-home").classList.remove("hidden");
+				break;
+		}
+	}
+
+	/* LOGIN → DASHBOARD */
+	document.getElementById("login-form-form").addEventListener("submit", e => {
+		e.preventDefault();
+		navigate("#/dashboard");
+	});
+
+	/* CHAT */
+	document.getElementById("chat-form-form").addEventListener("submit", e => {
+		e.preventDefault();
+		const input = e.target.querySelector("input");
+		const msg = input.value.trim();
+		if (msg !== "") {
+			const div = document.createElement("div");
+			div.textContent = msg;
+			document.getElementById("chat-messages").appendChild(div);
+			input.value = "";
+		}
+	});
+
+	/* PLAY → GAMES */
+	document.getElementById("open-game").onclick = () => navigate("#/games");
+
+	/* SELECTION DU JEU */
+	document.getElementById("open-pong").onclick = () => navigate("#/pong");
+	document.getElementById("open-tank").onclick = () => navigate("#/tank");
+
+	/* RETOUR NAV */
+	window.onpopstate = event => {
+		if (event.state) render(event.state.page);
+		else render("/");
+	};
+
+	/* INIT */
+	render("/");
+
+</script>
 
 </body>
 </html>
