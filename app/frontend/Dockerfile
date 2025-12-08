@@ -4,6 +4,7 @@ COPY . .
 
 RUN npm install
 RUN npm run build
+RUN npx tsc
 RUN npm install -g serve
 
 EXPOSE 8080

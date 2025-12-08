@@ -1,7 +1,11 @@
+import { Chat } from "./ws/chat";
+
+
 const Fastify = require("fastify");
 const websocketPlugin = require("@fastify/websocket");
+chat : Chat;
 
-async function start() {
+async function start(chat: Chat) {
   const fastify = Fastify({ logger: true });
 
   // Activer WebSocket
@@ -13,10 +17,12 @@ async function start() {
   // Endpoint WebSocket
   fastify.get("/ws", { websocket: true }, (connection, req) => {
     clients.add(connection);
+    chat.addClient("test");
 
     // Broadcast connexion
     for (const client of clients) {
       client.socket.send(`A user connected. Total: ${clients.size}`);
+      chat.broadcastClientIn(client.getName());
     }
 
     // Message entrant
@@ -45,4 +51,4 @@ async function start() {
   });
 }
 
-start();
+start(chat);
