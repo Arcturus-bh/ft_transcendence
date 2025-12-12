@@ -6,8 +6,8 @@ services:
     image: front
     ports:
       - "8080:8080"
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
 
   backend:
     restart: always
@@ -16,5 +16,5 @@ services:
     image: back
     ports:
       - "3000:3000"
-    env_file:
-      - .env
+    # env_file:
+    #   - .env

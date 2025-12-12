@@ -3,7 +3,7 @@ import { Chat } from "./ws/chat";
 
 const Fastify = require("fastify");
 const websocketPlugin = require("@fastify/websocket");
-chat : Chat;
+chat: Chat;
 
 async function start(chat: Chat) {
   const fastify = Fastify({ logger: true });
