@@ -2,12 +2,12 @@ export class Client
 {
     id: number;
     nickname: string;
-    // blocked: Set<number>;
+    blocked: Set<number>;
 
     constructor(id: number, nickname: string) {
-        this.nickname = nickname;
         this.id = id;
-        // this.blocked.set("");
+        this.nickname = nickname;
+        this.blocked = new Set();
     }
 
     getNickname(): string {
@@ -16,5 +16,17 @@ export class Client
 
     getId(): number {
         return this.id;
+    }
+
+    getBlocked(): Set<number> {
+        return this.blocked;
+    }
+
+    block(id: number) {
+        this.blocked.add(id);
+    }
+
+    unblock(id: number) {
+        this.blocked.delete(id);
     }
 }
