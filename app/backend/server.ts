@@ -1,45 +1,45 @@
-import { Chat } from "./ws/chat";
+// import { Chat } from "./ws/chat.ts";
 
 
 const Fastify = require("fastify");
 const websocketPlugin = require("@fastify/websocket");
-chat: Chat;
+// chat: Chat;
 
-async function start(chat: Chat) {
+async function start() {
   const fastify = Fastify({ logger: true });
 
   // Activer WebSocket
   await fastify.register(websocketPlugin);
 
   // Liste des clients connectés
-  const clients = new Set();
+  // const clients = new Set();
 
-  // Endpoint WebSocket
-  fastify.get("/ws", { websocket: true }, (connection, req) => {
-    clients.add(connection);
-    chat.addClient("test");
+  // // Endpoint WebSocket
+  // fastify.get("/ws", { websocket: true }, (connection, req) => {
+  //   clients.add(connection);
+  //   chat.addClient("test");
 
-    // Broadcast connexion
-    for (const client of clients) {
-      client.socket.send(`A user connected. Total: ${clients.size}`);
-      chat.broadcastClientIn(client.getName());
-    }
+  //   // Broadcast connexion
+  //   for (const client of clients) {
+  //     client.socket.send(`A user connected. Total: ${clients.size}`);
+  //     chat.broadcastClientIn(client.getName());
+  //   }
 
-    // Message entrant
-    connection.socket.on("message", (message) => {
-      for (const client of clients) {
-        client.socket.send(`User says: ${message}`);
-      }
-    });
+  //   // Message entrant
+  //   connection.socket.on("message", (message) => {
+  //     for (const client of clients) {
+  //       client.socket.send(`User says: ${message}`);
+  //     }
+  //   });
 
-    // Déconnexion
-    connection.socket.on("close", () => {
-      clients.delete(connection);
-      for (const client of clients) {
-        client.socket.send(`A user disconnected. Total: ${clients.size}`);
-      }
-    });
-  });
+  //   // Déconnexion
+  //   connection.socket.on("close", () => {
+  //     clients.delete(connection);
+  //     for (const client of clients) {
+  //       client.socket.send(`A user disconnected. Total: ${clients.size}`);
+  //     }
+  //   });
+  // });
 
   // Lancer serveur
   fastify.listen({ port: 3000, host: "0.0.0.0" }, (err) => {
@@ -51,4 +51,4 @@ async function start(chat: Chat) {
   });
 }
 
-start(chat);
+start();

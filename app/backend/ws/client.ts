@@ -1,12 +1,20 @@
 export class Client 
 {
-    name: string;
+    id: number;
+    nickname: string;
+    // blocked: Set<number>;
 
-    constructor(name: string) {
-        this.name = name;
+    constructor(id: number, nickname: string) {
+        this.nickname = nickname;
+        this.id = id;
+        // this.blocked.set("");
     }
 
-    getName() : string {
-        return this.name;
+    getNickname(): string {
+        return this.nickname;
+    }
+
+    getId(): number {
+        return this.id;
     }
 }

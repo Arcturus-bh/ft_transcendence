@@ -4,33 +4,71 @@ import { Room } from "./room";
 
 class Chat 
 {
-    clients: Map<string, Client>;
-    // rooms: Map<string, Room>;
+    nextClientId: number;
+
+    clients: Map<number, Client>;  // list of users connected to transcendence
+    rooms: Map<number, Room>;      // list of dm opened
 
     constructor() {
+        this.nextClientId = 0;
+
         this.clients = new Map();
-        // this.rooms = new Map();
+        this.rooms = new Map();
     }
 
-    addClient(clientName: string) {
-        const client: Client = new Client(clientName);
-        this.clients.set(clientName, client);
+    addClient(nickname: string) {
+        const id = this.nextClientId++;
+        const client = new Client(id, nickname);
+        this.clients.set(id, client);
+
+        // for websocket
+        return id;
     }
 
-    removeClient(clientName: string) {
-        this.clients.delete(clientName);
-        this.broadcastClientOut(clientName);
+    addRoom() {
+
     }
 
-    broadcastClientIn(clientName: string) {
-        console.log("${clientName} is connected.\n");
+    removeClient(id: number) {
+        this.broadcastClientOut(id);
+        this.clients.delete(id);
     }
 
-    broadcastClientOut(clientName: string) {
-        console.log("${clientName} is disconnected.\n");
+    broadcastClientIn(id: number) {
+        const nick = this.getClientNick(id);
+        if (!nick)
+            return;
+    
+        console.log(`${nick} is connected.\n`);
+    }
+
+    broadcastClientOut(id: number) {
+        const nick = this.getClientNick(id);
+        if (!nick)
+            return;
+
+        console.log(`${nick} is disconnected.\n`);
     }
 
     broadcastSystem(message: string) {
-        console.log(message);
+        for (const room of this.rooms.values())
+            room.broadcast(message);
+    }
+
+    // used for show which is connected on transcendence
+    displayClientsNicks() {
+        for (const client of this.clients.values())
+            console.log(client.getNickname());
+    }
+
+    isClientConnected(id: number): boolean {
+        return this.clients.has(id);
+    }
+
+    getClientNick(id: number): string | undefined {
+        const client = this.clients.get(id);
+
+        // if client exist, then return this nick, otherwise return 'undefined'
+        return client?.getNickname();
     }
 }
