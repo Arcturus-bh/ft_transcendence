@@ -77,8 +77,6 @@ class Chat
         return client?.getNickname();
     }
 
-
-
     // EVENTS FOR WEBSOCKET
     // private is like c++, cannot be used outside of this class
     private makeUserEvent(type: "user_connected" | "user_disconnected", id: number): ChatEvent | undefined {
