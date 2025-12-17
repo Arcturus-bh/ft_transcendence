@@ -1,3 +1,6 @@
+volumes:
+  backend_db:
+
 services:
   frontend:
     restart: always
@@ -16,5 +19,9 @@ services:
     image: back
     ports:
       - "3000:3000"
+    environment:
+      DATABASE_URL: file:/app/backend/prisma/dev.db
+    volumes:
+      - backend_db:/app/backend/prisma
     # env_file:
     #   - .env
