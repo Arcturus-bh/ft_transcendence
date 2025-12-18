@@ -13,7 +13,7 @@ async function registerUser(email, pass, nickname)
     });
 
     if (existingUser)
-        return false;
+        return {success: false, reason: "USER_EXIST"};
 
     const passwordHash = await bcrypt.hash(pass, 10);
 
@@ -25,7 +25,7 @@ async function registerUser(email, pass, nickname)
 			},
 		});
 
-    return true;
+    return {success: true};
 }
 
 async function loginUser(email, pass)

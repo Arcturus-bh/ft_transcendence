@@ -16,7 +16,6 @@ Instructions:
 Resources:
 
 
-
 Team Information:
     chuchard: Tech Game Designer
     bboussad: Dev Frontend

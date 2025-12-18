@@ -22,10 +22,12 @@ async function start() {
 		return reply.status(400).send({ error: "missing field" });
 	}
 
-	const success = await registerUser(email, password, nickname);
+	const result = await registerUser(email, password, nickname);
 
-	if (!success) {
-		return reply.status(400).send({ error: "user already exists, change your infos or try to login." });
+	if (!result.success)
+	{
+		if (result.reason === "USER_EXIST")
+			return reply.status(400).send({ error: "user already exists, change your infos or try to login." });
 	}
 
 	return { ok: true };
