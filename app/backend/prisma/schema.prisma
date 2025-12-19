@@ -5,18 +5,32 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+	provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+	provider = "sqlite"
+	url      = env("DATABASE_URL")
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  passwordHash String
-  nickname     String
-  createdAt    DateTime @default(now())
+	id				Int     @id @default(autoincrement())
+	email			String  @unique
+	nickname		String  @unique
+	passwordHash	String
+	avatarUrl		String	@default("") // choose an avatar url by default
+
+	// --- Social ---
+	friends			User[]  @relation("UserFriends")
+	friendsOf		User[]  @relation("UserFriends") // mandatory by prisma, must ignore it and dont use it
+
+	blocked			User[]  @relation("UserBlocked")
+	blockedBy		User[]  @relation("UserBlocked") // mandatory by prisma, must ignore it and dont use it
+
+	// --- Stats ---
+	wins			Int     @default(0) // initialized to 0 because it's a counter
+  	losses			Int     @default(0) // same
+
+	// --- Meta ---
+	createdAt 		DateTime @default(now())
 }

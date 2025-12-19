@@ -4,18 +4,11 @@ const { registerUser, loginUser } = require("./auth/auth.service");
 const Fastify = require("fastify");
 const websocketPlugin = require("@fastify/websocket");
 
-const bcrypt = require("bcrypt");
 // chat: Chat;
 
 
-async function start() {
-	const fastify = Fastify({ logger: true });
-
-	// Activer WebSocket
-	await fastify.register(websocketPlugin);
-
-	// TRY TO REGISTER
-	fastify.post("/auth/register", async (request, reply) => {
+async function register(request, reply)
+{
 	const { email, password, nickname } = request.body;
 
 	if (!email || !password || !nickname) {
@@ -30,11 +23,11 @@ async function start() {
 			return reply.status(400).send({ error: "user already exists, change your infos or try to login." });
 	}
 
-	return { ok: true };
-	});
+	return { ok: true }; // result for the front
+}
 
-	// TRY TO LOGIN
-	fastify.post("/auth/login", async (request, reply) => {
+async function login(request, reply)
+{
 	const { email, password } = request.body;
 
 	if (!email || !password) {
@@ -50,8 +43,19 @@ async function start() {
 			return reply.status(401).send({ error: "bad credentials" });
 	}
 
-	return { ok: true };
-	});
+	return { ok: true }; // result for the front
+}
+
+async function start() {
+	const fastify = Fastify({ logger: true });
+
+	// ENABLE WEBSOCKET
+	await fastify.register(websocketPlugin);
+
+
+	// LISTEN ROUTES
+	fastify.post("/auth/register", register);
+	fastify.post("/auth/login", login);
 
 
 	// Liste des clients connectés
