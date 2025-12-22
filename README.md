@@ -3,6 +3,7 @@ This project has been created as part of the 42 curriculum by bboussad, chuchard
 Description: 
 
 Instructions:
+
     For WORK on this project:
     -> cd /app/backend/
     -> npm install
@@ -17,6 +18,7 @@ Resources:
 
 
 Team Information:
+
     chuchard -> Tech Game Designer, responsible for the game logic, gameplay mechanics, and Pong implementation.
 
     bboussad -> Frontend developer, responsible for the UI, UX, and client-side interactions.

@@ -1,17 +1,18 @@
-FROM node:22
+FROM node:22 AS build
+WORKDIR /app/frontend
 
-WORKDIR /frontend
-
-COPY package*.json ./
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 
 COPY . .
-
 RUN npm run build
-# RUN npx tsc
-RUN npm install -g serve
+
+
+FROM node:22
+WORKDIR /app/frontend
+
+RUN npm i -g serve
+COPY --from=build /app/frontend/dist ./dist
 
 EXPOSE 8080
-
-
-CMD ["serve", "-s", ".", "-l", "8080"]
+CMD ["serve", "-s", "dist", "-l", "8080"]
