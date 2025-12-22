@@ -57,7 +57,6 @@ async function start() {
 	fastify.post("/auth/register", register);
 	fastify.post("/auth/login", login);
 
-
 	// Liste des clients connectés
 	// const clients = new Set();
 
